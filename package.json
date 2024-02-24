@@ -2,12 +2,12 @@
   "name": "m1-node-server-1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "save": "git add .;git commit -m \"v.0.0.1\";git push;"
   },
   "keywords": [],
   "author": "",
