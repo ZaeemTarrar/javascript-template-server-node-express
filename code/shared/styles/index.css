@@ -1,0 +1,58 @@
+:root {
+  --green: forestgreen;
+  --black: #222;
+  --white: #aaa;
+}
+
+* {
+  font-family: Comic Sans MS;
+  text-shadow: 0px 0px 10px #000;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: var(--black);
+  color: var(--white);
+}
+h1 {
+  color: var(--white);
+  font-size: 50px;
+}
+h1 > span {
+  color: var(--green);
+}
+h4 {
+  color: var(--white);
+  background-color: rgba(10, 10, 10, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#btn1 {
+  border: 0px;
+  outline: 0px;
+  border-radius: 5px;
+  background-color: var(--green);
+  color: var(--black);
+  padding: 10px;
+  opacity: 1;
+  transition: opacity 1s;
+  text-decoration: none !important;
+}
+#btn1:hover {
+  cursor: pointer;
+}
+#btn1:click {
+  opacity: 0.5;
+}

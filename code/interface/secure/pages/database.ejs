@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node.Js Server</title>
+    <link rel="stylesheet" href="styles/database.css" />
+    <script src="scripts/database.js"></script>
+    <base href="/" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <h1>Welcome to the <span>Node JS</span> Server !</h1>
+      <div id="main">
+        <div class="block">
+          <h4>
+            <div>+</div>
+            Students Collection
+          </h4>
+          <div class="data">
+            <pre><%- JSON.stringify(schema,null,3) %></pre>
+            <br />
+            <pre><%- JSON.stringify(data,null,3) %></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
