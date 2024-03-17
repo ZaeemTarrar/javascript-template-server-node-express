@@ -1,28 +1,61 @@
-const P = require("./../../utils/helpers/printer");
-const { LOGS } = require("./../../configs/index");
+const RequestFormatter = (res) => {
+  res._status = 200;
+  res._message = "";
+  res._error = false;
+  res._data = null;
 
-const RF = (res, code = 200) => {
-  return (msg = "", error = false, data = null) => {
-    try {
-      if (typeof msg != "string") {
-        if (typeof error == "string") [msg, error] = [error, msg];
-        if (typeof data == "string") [msg, data] = [data, msg];
-      }
-      if (typeof error != "boolean") {
-        if (typeof msg == "boolean") [msg, error] = [error, msg];
-        if (typeof data == "boolean") [error, data] = [data, error];
-      }
-      if (typeof data != "object" && typeof data != "array") {
-        if (typeof msg == "object" || typeof msg == "array")
-          [msg, data] = [data, msg];
-        if (typeof error == "object" || typeof error == "array")
-          [error, data] = [data, error];
-      }
-      return res.status(code).json({ msg, error, data });
-    } catch (err) {
-      if (LOGS) P.Error("Error", err.message);
-    }
-  };
+  res.reset = function () {
+    this._code = 200;
+    this._message = "";
+    this._error = false;
+    this._data = null;
+    return this;
+  }.bind(res);
+
+  res.sts = function (arg) {
+    this._status = isNaN(arg) ? 200 : arg;
+    return this;
+  }.bind(res);
+
+  res.msg = function (arg) {
+    this._message = typeof arg == "string" ? arg : "";
+    return this;
+  }.bind(res);
+
+  res.err = function (arg) {
+    this._error = typeof arg == "boolean" ? arg : false;
+    return this;
+  }.bind(res);
+
+  res.pyd = function (arg) {
+    this._data = typeof arg == "object" || typeof arg == "array" ? arg : null;
+    return this;
+  }.bind(res);
+
+  res.Go = function (data1 = null) {
+    if (data1) this.pyd(data1);
+    this.status(this._status).json({
+      message: this._message,
+      error: this._error,
+      payload: this._data,
+    });
+    this.reset();
+    this.end();
+    return;
+  }.bind(res);
+
+  res.Deal = function (code) {
+    this.status(code).json({
+      message: this._message,
+      error: true,
+      payload: this._data,
+    });
+    this.reset();
+    this.end();
+    return;
+  }.bind(res);
+
+  return res;
 };
 
-module.exports = RF;
+module.exports = RequestFormatter;

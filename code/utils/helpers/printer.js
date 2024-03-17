@@ -9,7 +9,7 @@ const {
   cyan,
   rainbow,
 } = require("colors");
-const { LOGS } = require("./../../configs/index");
+const { LOGS } = require("../../configs/meta");
 
 module.exports = {
   Clear: () => LOGS && console.clear(),
@@ -39,7 +39,16 @@ module.exports = {
     LOGS && console.log(bold(gray(title)), bold(yellow(data))),
   Data: (title, data) =>
     LOGS && console.log(bold(gray("\n" + title)), bold(yellow(data))),
-  ApiReport: (m, t, u, p, b) => {
+  SchemaAction: (name, action, stage, data = undefined) =>
+    LOGS &&
+    console.log(
+      bold(magenta(`\n[DbSchemaAction]`)),
+      bold(blue(`[${name}]`)),
+      bold(red(`[${action}]`)),
+      bold(yellow(`[${stage}]`)),
+      data ? bold(gray(`[${JSON.stringify(data, null, 3)}]`)) : ""
+    ),
+  ApiReport: (m, t, u, q, p, b) => {
     if (LOGS) {
       let D = new Date();
       let timeUrl =
@@ -52,6 +61,8 @@ module.exports = {
         bold(red(`[${m}]`)),
         bold(cyan(`[${t}s]`)),
         bold(green(`[${u}]`)),
+        bold(gray(`[Queries]:`)),
+        bold(yellow(q)),
         bold(gray(`[Params]:`)),
         bold(yellow(p)),
         bold(gray(`[Body]:`)),

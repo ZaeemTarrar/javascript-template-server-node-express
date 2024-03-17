@@ -15,19 +15,17 @@ const DB = {
   },
 };
 
-const Configs = {
-  ...DB,
-  MONGO_DB_LINK() {
-    const { USER, PASS, NAME, HOST, PORT } = Conf.DB;
-    return ENV.MODE == "PRODUCTION"
-      ? `mongodb+srv://${USER}:${PASS}@${NAME}.pd5v1ct.mongodb.net/?retryWrites=true&w=majority`
-      : `mongodb://${HOST}:${PORT}/${NAME}`;
-  },
-  MONGO_DB_OPTIONS(auth = false) {
-    const { OPTIONS, USER, PASS } = DB;
-    if (auth) return { ...OPTIONS, user: USER, pass: PASS };
-    else return OPTIONS;
-  },
+DB.MONGO_DB_LINK = function () {
+  const { USER, PASS, NAME, HOST, PORT } = DB;
+  return ENV.MODE == "PRODUCTION"
+    ? `mongodb+srv://${USER}:${PASS}@${NAME}.pd5v1ct.mongodb.net/?retryWrites=true&w=majority`
+    : `mongodb://${HOST}:${PORT}/${NAME}`;
 };
 
-module.exports = Configs;
+DB.MONGO_DB_OPTIONS = function (auth = false) {
+  const { OPTIONS, USER, PASS } = DB;
+  if (auth) return { ...OPTIONS, user: USER, pass: PASS };
+  else return OPTIONS;
+};
+
+module.exports = DB;
