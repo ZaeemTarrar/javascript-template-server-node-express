@@ -1,7 +1,7 @@
 const cluster = require("cluster");
 const os = require("os");
 const cpuCount = os.cpus().length;
-const cpuCountToUse = Math.round(cpuCount / 2.0);
+const cpuCountToUse = Math.round(cpuCount);
 const ServerUrl = __dirname + "/../../app.js";
 
 cluster.setupPrimary({ exec: ServerUrl });

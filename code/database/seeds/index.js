@@ -3,7 +3,11 @@ const UserSeed = require("./user");
 const PostSeed = require("./post");
 
 module.exports = async () => {
-  P.Heading("DATABASE SEEDS");
-  await UserSeed();
-  await PostSeed();
+  try {
+    P.Heading("DATABASE SEEDS");
+    await UserSeed();
+    await PostSeed();
+  } catch (err) {
+    P.Error("DATABASE SEEDS: ", err.message);
+  }
 };

@@ -8,12 +8,15 @@
   },
   "scripts": {
     "test": "node tests/index.js",
+    "loadtest": "npx loadtest -n 12 -c 4 -k http://localhost:3001/go",
     "save": "git add .;git commit -m \"v.0.0.1\";git push;",
     "start": "node app.js",
     "watch": "nodemon app.js",
     "cluster": "node code/clusters/index.js",
     "watch-cluster": "nodemon code/clusters/index.js",
-    "reset": ""
+    "reset": "",
+    "start:dev": "node ./build/dev/main.js",
+    "build:dev": "webpack --config webpack.config.js --mode development"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +26,7 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
+    "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -33,13 +37,18 @@
     "express-fileupload": "^1.4.3",
     "express-rate-limit": "^7.1.5",
     "express-session": "^1.18.0",
+    "express-zip": "^3.0.0",
     "helmet": "^7.1.0",
     "http": "^0.0.1-security",
     "http-status": "^1.7.3",
     "https": "^1.0.0",
+    "image-data-uri": "^2.0.1",
+    "image-type": "^5.2.0",
     "ip": "^2.0.1",
     "jsonwebtoken": "^9.0.2",
+    "loadtest": "^8.0.9",
     "lodash": "^4.17.21",
+    "mongodb-client-encryption": "^6.0.0",
     "mongoose": "^8.1.1",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
@@ -48,10 +57,10 @@
     "request-stats": "^3.0.0",
     "response-time": "^2.3.2",
     "socket.io": "^4.7.4",
+    "stream-to-array": "^2.3.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "loadtest": "^8.0.7",
     "nodemon": "^3.1.0",
     "pm2": "^5.3.1"
   }

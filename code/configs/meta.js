@@ -6,10 +6,10 @@ const ip = address();
 
 const Configs = {
   MODE: ENV.MODE || MODE.DEV,
-  LOGS: Boolean(ENV.LOGS) || true,
+  LOGS: false,
   LOG_DATA: false,
-  EXP_ENC_LIM: 500,
-  FILE_UPLOAD_LIM: 50 * 1024 * 1024,
+  EXP_ENC_LIM: 1e10,
+  FILE_UPLOAD_LIM: Number(1 * 1024 * 1024) * 1e10,
   COOKIE_AGE: 60000 * 60,
   TRACK_ERR: Boolean(ENV.TRACK_ERR) || true,
   PROTOCOL: ENV.PROTOCOL || "http",

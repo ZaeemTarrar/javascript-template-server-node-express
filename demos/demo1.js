@@ -1,0 +1,5 @@
+const Launch = () => {
+  // Code
+};
+
+Launch();

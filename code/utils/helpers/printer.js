@@ -8,6 +8,7 @@ const {
   green,
   cyan,
   rainbow,
+  white,
 } = require("colors");
 const { LOGS } = require("../../configs/meta");
 
@@ -48,19 +49,25 @@ module.exports = {
       bold(yellow(`[${stage}]`)),
       data ? bold(gray(`[${JSON.stringify(data, null, 3)}]`)) : ""
     ),
-  ApiReport: (m, t, u, q, p, b) => {
+  ApiReport: (pid, m, t, u, q, p, b, pf, hu, ht, hu2, ht2, hud, htd) => {
     if (LOGS) {
       let D = new Date();
       let timeUrl =
         `${D.getDate()}/${D.getMonth()}/${D.getFullYear()} ` +
         `${D.getHours()}:${D.getMinutes()}:${D.getSeconds()}`;
       console.log(
-        bold(gray(`\n[${timeUrl}]`)),
+        bold(gray(`\n[PID=${white(pid)}]`)),
+        bold(gray(`[${timeUrl}]`)),
         bold(blue("\n[API LOG]")),
         bold(gray("->")),
         bold(red(`[${m}]`)),
         bold(cyan(`[${t}s]`)),
-        bold(green(`[${u}]`)),
+        bold(cyan(`[${pf}s]`)),
+        bold(
+          gray(`{${red(hu)}Kb/${green(ht)}Kb}-{${red(hu2)}Kb/${green(ht2)}Kb}`)
+        ),
+        bold(gray(`{${red(hud)}Kb/${green(htd)}Kb}`)),
+        bold(green(`\n[${u}]`)),
         bold(gray(`[Queries]:`)),
         bold(yellow(q)),
         bold(gray(`[Params]:`)),

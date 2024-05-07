@@ -30,6 +30,7 @@ const Init = (app) => {
     })
   );
   app.use(cors({ origin: ALLOW_CORS, credentials: true }));
+  app.options("*", cors({ origin: ALLOW_CORS, credentials: true }));
   app.use(helmet({ contentSecurityPolicy: false, xDownloadOptions: false }));
   // app.use(fileUpload({ limits: { fileSize: FILE_UPLOAD_LIM } }));
   app.use(
